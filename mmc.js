@@ -1,39 +1,40 @@
 let num1;
 let num2;
-console.log("Digite o primeiro número")
-process.stdin.on("data", function (data){
-let entrada= data.toString().trim()
+console.log("Digite o primeiro número");
 
-if (!num1) {
-    if (!isNaN(entrada)) {
-        num1 = Number(entrada);
-        console.log("Digite o segundo número:");
-    } else {
-        console.log("Digite apenas número(s)");
-    }
-}else if (!num2) {
-    if (!isNaN(entrada)) {
-        num2 = Number(entrada);
-        let a = num1;
-        let b = num2;
-        let originalA = a;
-        let originalB = b;
+process.stdin.on("data", function (data) {
+    let entrada = data.toString().trim();
 
-        while (b) {
-            let temp = b;
-            b = a % b;
-            a = temp;
+    if (!num1) {
+        if (!isNaN(entrada)) {
+            num1 = Number(entrada);
+            console.log("Digite o segundo número:");
+        } else {
+            console.log("Digite apenas número(s)");
         }
-        let mdc = a;
+    } else if (!num2) {
+        if (!isNaN(entrada)) {
+            num2 = Number(entrada);
 
  
-        let mmc = (originalA * originalB) / mdc;
+            let a = num1;
+            let b = num2;
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            let mdc = a;
 
-        console.log("O mínimo múltiplo comum de " + num1 + " e " + num2 + " é " + mmc);
-        process.exit();  
-    } else {
-        console.log("Digite apenas número(s)");
+            let originalA = num1;
+            let originalB = num2;
+            let mmc = (originalA * originalB) / mdc;
+
+            console.log("O máximo divisor comum de " + num1 + " e " + num2 + " é " + mdc);
+            console.log("O mínimo múltiplo comum de " + num1 + " e " + num2 + " é " + mmc);
+            process.exit();
+        } else {
+            console.log("Digite apenas número(s)");
+        }
     }
-}
-
-})
+});
